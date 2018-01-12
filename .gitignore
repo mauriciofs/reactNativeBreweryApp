@@ -69,3 +69,6 @@ yarn-error.log*
 
 # expo
 .expo/
+
+# VSCode local history
+.history

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import RamdomBeerList from './RamdomBeerList';
+import RandomBeerList from './RandomBeerList';
+import Beer from '../../models/Beer';
 
 class RandomBeerContainer extends Component {
     constructor(props){
@@ -9,9 +10,25 @@ class RandomBeerContainer extends Component {
         }
     }
 
+    getRandomBeer = () => {
+        //Get random beer
+        const model = new Beer();
+        model.getRandomBeer().then((beer) => {
+            this.setState({beer: beer});
+        });
+    }
+
+    componentDidMount(){
+        this.getRandomBeer();
+    }
+
+    onButtonPress = () => {
+        this.getRandomBeer();
+    }
+
     render(){
         return (
-            <RamdomBeerList beer={this.state.beer}/>
+            <RandomBeerList beer={this.state.beer} onButtonPress={this.onButtonPress}/>
         );
     }
 }
